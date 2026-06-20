@@ -1,0 +1,75 @@
+import { Link, NavLink, Outlet } from 'react-router-dom'
+
+export default function HomeNavbar() {
+    return (
+        <>
+            {/* TopNavBar (Shared Component) */}
+            <header className="h-16 w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+                <div className="container mx-auto flex justify-between items-center h-full">
+                    <div className="flex items-center gap-2">
+                        <h1 className="text-2xl font-bold text-primary">Safe Space</h1>
+                    </div>
+                    <nav className="hidden md:flex items-center gap-8">
+                        <NavLink
+                            to="/"
+                            className={({isActive}) =>
+                                `font-label-md text-label-md pb-1 transition-colors ${isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-on-surface-variant hover:text-primary"
+                                }`
+                            }
+                        >
+                            Home
+                        </NavLink>
+
+                        <NavLink
+                            to="/tests"
+                            className={({ isActive }) =>
+                                `font-label-md text-label-md pb-1 transition-colors ${isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-on-surface-variant hover:text-primary"
+                                }`
+                            }
+                        >
+                            Tests
+                        </NavLink>
+
+                        <NavLink
+                            to="/doctors"
+                            className={({ isActive }) =>
+                                `font-label-md text-label-md pb-1 transition-colors ${isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-on-surface-variant hover:text-primary"
+                                }`
+                            }
+                        >
+                            Doctors
+                        </NavLink>
+
+                        <NavLink
+                            to="/about"
+                            className={({ isActive }) =>
+                                `font-label-md text-label-md pb-1 transition-colors ${isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-on-surface-variant hover:text-primary"
+                                }`
+                            }
+                        >
+                            About
+                        </NavLink>
+                    </nav>
+                    <div className="flex items-center gap-4">
+                        <button className="md:hidden p-2 text-on-surface-variant">
+                            <span className="material-symbols-outlined">menu</span>
+                        </button>
+                        <div className="hidden md:flex items-center gap-4">
+                            <Link to="/login" className="px-5 py-2 rounded-full border border-primary text-primary font-label-md hover:bg-primary/5 transition-all">Sign In</Link>
+                            <Link to="/register" className="px-5 py-2 rounded-full bg-primary text-white font-label-md hover:opacity-90 transition-all shadow-md">Get Started</Link>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <Outlet />
+        </>
+    )
+}
