@@ -75,7 +75,7 @@ export default function Home() {
                                 <p className="text-gray-700 grow">
                                     Certified clinical tests to help you understand your emotional state and track your mental health progress over time with data.
                                 </p>
-                                <Link to="/test" className="mt-8 text-primary text-sm font-medium leading-5 flex items-center gap-2 hover:gap-3 transition-all">
+                                <Link to="/tests" className="mt-8 text-primary text-sm font-medium leading-5 flex items-center gap-2 hover:gap-3 transition-all">
                                     Start Test <FaArrowRightLong className="text-sm" />
                                 </Link>
                             </div>
