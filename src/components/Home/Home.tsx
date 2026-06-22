@@ -11,9 +11,9 @@ export default function Home() {
             <main className="grow">
                 {/* Hero Section */}
                 <section className="bg-hero-gradient relative overflow-hidden pt-16 pb-24 md:pt-32 md:pb-40">
-                    <div className="container mx-auto">
+                    <div className="container px-3 md:px-0 mx-auto">
                         {/* Atmospheric micro-interaction backgrounds */}
-                        <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-150 h-150 bg-secondary-container/20 rounded-full blur-[120px] pointer-events-none" />
+                        <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-150 h-150 bg-secondary-container px-3 md:px-0/20 rounded-full blur-[120px] pointer-events-none" />
                         <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-125 h-125 bg-primary-fixed/30 rounded-full blur-[100px] pointer-events-none" />
                         <div className="max-w-6xl mx-auto text-center relative z-10">
                             <h1 className="text-4xl font-bold mb-6 text-gray-900 max-w-3xl mx-auto tracking-tight">
@@ -47,7 +47,7 @@ export default function Home() {
                 </section>
                 {/* Features Bento Grid */}
                 <section className="py-24">
-                    <div className="container mx-auto">
+                    <div className="container px-3 md:px-0 mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="font-semibold text-3xl leading-10 text-gray-900 mb-4">Empower Your Mind</h2>
                             <p className="text-gray-700">Carefully crafted tools to help you navigate your mental health journey.</p>
@@ -97,27 +97,29 @@ export default function Home() {
                 </section>
                 {/* Social Proof / CTA Section */}
                 <section className="py-24">
-                    <div className="container mx-auto bg-primary rounded-[40px] p-12 md:p-24 relative overflow-hidden flex flex-col items-center text-center">
-                        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-primary/20 to-transparent pointer-events-none" />
-                        <h2 className="font-semibold text-3xl leading-10  text-white mb-6 relative z-10">Ready to take the first step?</h2>
-                        <p className="text-lg font-normal leading-7 text-white/90 mb-10 max-w-xl relative z-10">
-                            Join over 50,000 members who have found their peace and balance through our personalized wellness programs.
-                        </p>
-                        <Link to="/signup" className="relative z-10 px-8 py-4 bg-white text-primary rounded-full text-sm font-medium leading-5 hover:bg-surface transition-all shadow-xl hover:shadow-2xl active:scale-95">
-                            Create Free Account
-                        </Link>
-                        <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60">
-                            <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
-                                <FaCheckCircle className="text-sm" />
-                                Verified Professionals
-                            </div>
-                            <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
-                                <FaCheckCircle className="text-sm" />
-                                HIPAA Compliant
-                            </div>
-                            <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
-                                <FaCheckCircle className="text-sm" />
-                                24/7 Access
+                    <div className="container px-3 md:px-0 mx-auto">
+                        <div className="bg-primary rounded-[40px] p-12 md:p-24 relative overflow-hidden flex flex-col items-center text-center">
+                            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-primary/20 to-transparent pointer-events-none" />
+                            <h2 className="font-semibold text-3xl leading-10  text-white mb-6 relative z-10">Ready to take the first step?</h2>
+                            <p className="text-lg font-normal leading-7 text-white/90 mb-10 max-w-xl relative z-10">
+                                Join over 50,000 members who have found their peace and balance through our personalized wellness programs.
+                            </p>
+                            <Link to="/signup" className="relative z-10 px-8 py-4 bg-white text-primary rounded-full text-sm font-medium leading-5 hover:bg-surface transition-all shadow-xl hover:shadow-2xl active:scale-95">
+                                Create Free Account
+                            </Link>
+                            <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60">
+                                <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
+                                    <FaCheckCircle className="text-sm" />
+                                    Verified Professionals
+                                </div>
+                                <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
+                                    <FaCheckCircle className="text-sm" />
+                                    HIPAA Compliant
+                                </div>
+                                <div className="flex items-center gap-2 text-white text-xs font-semibold leading-4">
+                                    <FaCheckCircle className="text-sm" />
+                                    24/7 Access
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,7 +127,7 @@ export default function Home() {
             </main>
             {/* Footer (Shared Component) */}
             <footer className="bg-[#ededf9] border-t border-outline-variant w-full py-8">
-                <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="container px-3 md:px-0 mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="flex flex-col items-center md:items-start gap-2">
                         <span className="font-semibold text-gray-900">Safe Space</span>
                         <p className="text-gray-700">Promoting mental well-being for everyone.</p>
