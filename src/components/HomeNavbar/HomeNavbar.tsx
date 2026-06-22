@@ -5,7 +5,7 @@ export default function HomeNavbar() {
         <>
             {/* TopNavBar (Shared Component) */}
             <header className="h-16 w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
-                <div className="container mx-auto flex justify-between items-center h-full">
+                <div className="container mx-auto px-3 md:px-0 flex justify-between items-center h-full">
                     <div className="flex items-center gap-2">
                         <h1 className="text-2xl font-bold text-primary">Safe Space</h1>
                     </div>

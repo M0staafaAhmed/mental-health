@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Dashboard from './components/Dashboard/Dashboard'
 import Home from './components/Home/Home'
 import HomeNavbar from './components/HomeNavbar/HomeNavbar'
+import Register from './components/auth/Register/Register'
 
 function App() {
   
@@ -12,7 +13,7 @@ function App() {
       {path: 'tests', element: <h1>Tests</h1>},
       {path: 'doctors', element: <h1>Doctors</h1>},
     ]},
-    {path: '/register', element: <h1>Register</h1>},
+    {path: '/register', element: <Register/>},
     {path: '/login', element: <h1>Login</h1>},
     {path: '/mood', element: <h1>Mood</h1>},
     {path: '/dashboard', element: <Dashboard />, children: [
