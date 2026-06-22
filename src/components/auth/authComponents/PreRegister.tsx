@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaSpa } from 'react-icons/fa'
 import { FaArrowLeft } from 'react-icons/fa6'
 
