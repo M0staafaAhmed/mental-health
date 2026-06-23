@@ -8,15 +8,18 @@ import { ToastContainer } from "react-toastify";
 import Doctors from "./components/Doctors/Doctors";
 import About from "./components/About/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Tests from "./components/Tests/Tests";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const router = createBrowserRouter([
+    {path: "*", element: <NotFound />},
     {
       path: "",
       element: <HomeNavbar />,
       children: [
         { index: true, element: <Home /> },
-        { path: "tests", element: <h1>Tests</h1> },
+        { path: "tests", element: <Tests /> },
         { path: "doctors", element: <Doctors /> },
         { path: "about", element: <About /> },
       ],
