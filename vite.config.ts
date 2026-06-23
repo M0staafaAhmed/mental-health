@@ -8,5 +8,4 @@ export default defineConfig({
     tailwindcss(),
     react()
   ],
-  // شيلنا جزء الـ server والـ proxy بالكامل لأنه ملوش لزمة دلوقتي
 })
