@@ -7,5 +7,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react()
-  ]
+  ],
+  // شيلنا جزء الـ server والـ proxy بالكامل لأنه ملوش لزمة دلوقتي
 })
