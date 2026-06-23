@@ -65,8 +65,8 @@ export default function About() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/80 bg-white/80 p-6 shadow-soft backdrop-blur">
-              <div className="rounded-[1.5rem] bg-surface p-6">
+            <div className="rounded-4xl border border-white/80 bg-white/80 p-6 shadow-soft backdrop-blur">
+              <div className="rounded-3xl bg-surface p-6">
                 <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/10 text-primary">
                   <MdOutlinePsychology className="text-4xl" />
                 </div>
@@ -101,7 +101,7 @@ export default function About() {
             {VALUES.map(({ icon: Icon, title, text }) => (
               <article
                 key={title}
-                className="rounded-[2rem] border border-white/80 bg-white/80 p-7 shadow-soft backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-hover"
+                className="rounded-4xl border border-white/80 bg-white/80 p-7 shadow-soft backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-hover"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10 text-secondary">
                   <Icon className="text-2xl" />
@@ -114,7 +114,7 @@ export default function About() {
             ))}
           </div>
 
-          <div className="mt-16 rounded-[2rem] bg-primary p-8 text-white shadow-soft md:p-12">
+          <div className="mt-16 rounded-4xl bg-primary p-8 text-white shadow-soft md:p-12">
             <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
               <div>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">

@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Doctors from "./components/Doctors/Doctors";
 import About from "./components/About/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Login from "./components/auth/Login/Login";
 import Tests from "./components/Tests/Tests";
 import NotFound from "./components/NotFound/NotFound";
 
@@ -25,7 +26,7 @@ function App() {
       ],
     },
     { path: "/register", element: <Register /> },
-    { path: "/login", element: <h1>Login</h1> },
+    { path: "/login", element: <Login /> },
     { path: "/mood", element: <h1>Mood</h1> },
     {
       path: "/dashboard",
