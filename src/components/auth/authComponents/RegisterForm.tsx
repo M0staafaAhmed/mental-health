@@ -10,8 +10,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-export default function RegisterForm() {
+export default function RegisterForm({ setPage , setEmail }: { setPage: (page: string) => void; setEmail: (email: string) => void }) {
   const [showPassword, setShowPassword] = useState(false)
   const [showRePassword, setShowRePassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -52,22 +53,18 @@ export default function RegisterForm() {
   async function handleRegister(data: z.infer<typeof registerSchema>) {
     setIsLoading(true)
     try {
-      const req = await fetch("https://mental-heath-backend.vercel.app/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-      const res = await req.json()
-      if (res.status === "success"){
-        toast.success("Registration successful! Please Enter verification code sent to your email.")
-      }else{
-        toast.error(res.message || "Registration failed. Please try again.")
-      }
+      const req = await axios.post(`https://mental-heath-backend.vercel.app/register`, data)
+      console.log(req)
+      const res = await req.data
+      console.log(res)
+      toast.success(res.message || "Registration successful! Please Enter verification code sent to your email.")
       console.log(res);
-    } catch (error) {
+      setEmail(data.Email);
+      setPage("verification");
+    } catch (error : any) {
       console.error("Error registering user:", error);
+      toast.error(error.response?.data?.message || "Registration failed. Please try again.");
+      console.log(error.response?.data || error.message);
     }finally {
       setIsLoading(false)
     }
@@ -84,7 +81,7 @@ export default function RegisterForm() {
             <div className="absolute bottom-[10%] right-[10%] w-[30%] h-[30%] bg-[#89f5e7] blur-[100px] rounded-full" />
           </div>
           {/* Register Card Container */}
-          <section className="shadow-[0 4px 20px -2px rgba(15, 23, 42, 0.05)] hover:shadow-[0 10px 25px -5px rgba(15, 23, 42, 0.08)] relative z-10 w-full max-w-130 bg-white rounded-xl border border-outline-variant p-4 md:p-8">
+          <section className="shadow-[0 4px 20px -2px rgba(15, 23, 42, 0.05)] hover:shadow-[0 10px 25px -5px rgba(15, 23, 42, 0.08)] relative z-10 w-full max-w-130 bg-white rounded-xl border border-outline-variant p-4 md:p-8 animate-[fadeIn_0.5s_ease-in-out]">
             {/* Brand Identity */}
             <div className="text-center mb-8">
               <div className="flex justify-center mb-2">
