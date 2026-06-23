@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Home from './components/Home/Home'
 import HomeNavbar from './components/HomeNavbar/HomeNavbar'
 import Register from './components/auth/Register/Register'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer />
     </>
   )
 }
