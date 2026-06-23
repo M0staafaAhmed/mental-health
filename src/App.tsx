@@ -4,6 +4,8 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Home from './components/Home/Home'
 import HomeNavbar from './components/HomeNavbar/HomeNavbar'
 import Register from './components/auth/Register/Register'
+import Doctors from './components/Doctors/Doctors'
+import About from './components/About/About'
 
 function App() {
   
@@ -11,7 +13,8 @@ function App() {
     {path: '', element: <HomeNavbar/> , children:[
       {index: true, element: <Home/>},
       {path: 'tests', element: <h1>Tests</h1>},
-      {path: 'doctors', element: <h1>Doctors</h1>},
+      {path: 'doctors', element: <Doctors />},
+      {path: 'about', element: <About />},
     ]},
     {path: '/register', element: <Register/>},
     {path: '/login', element: <h1>Login</h1>},
