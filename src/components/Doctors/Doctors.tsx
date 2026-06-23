@@ -1,6 +1,7 @@
-﻿import { useEffect, useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { FaEnvelope, FaLeaf, FaPhoneAlt, FaSearch } from "react-icons/fa";
 import { MdOutlineVerified } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query"; 
 
 interface Doctor {
   DoctorID: number;
@@ -14,7 +15,6 @@ interface Doctor {
 type DoctorApiResponse = Doctor[] | { data?: unknown };
 
 const API_URL = "https://mental-heath-backend.vercel.app/doctors";
-
 
 function getInitials(fullName: string) {
   const parts = fullName.trim().split(/\s+/);
@@ -41,43 +41,22 @@ function extractDoctors(json: DoctorApiResponse) {
   return Array.isArray(data) ? data.filter(isDoctor) : [];
 }
 
+const fetchDoctors = async (): Promise<Doctor[]> => {
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error("Failed to load doctors");
+  const json = (await res.json()) as DoctorApiResponse;
+  return extractDoctors(json);
+};
+
 function Doctors() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchDoctors() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const res = await fetch(API_URL, { signal: controller.signal });
-        if (!res.ok) throw new Error("Failed to load doctors");
-
-        const json = (await res.json()) as DoctorApiResponse;
-        const extractedData = extractDoctors(json);
-
-        setDoctors(extractedData);
-      } catch (err) {
-        if ((err as Error).name !== "AbortError") {
-          setDoctors([]);
-          
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchDoctors();
-    return () => controller.abort();
-  }, []);
+  const { data: doctors = [], isLoading, isError, error } = useQuery<Doctor[], Error>({
+    queryKey: ["doctors"],
+    queryFn: fetchDoctors,
+    staleTime: 1000 * 60 * 5, 
+  });
 
   const filteredDoctors = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -124,7 +103,8 @@ function Doctors() {
           </div>
 
           <div className="mt-12 min-h-[420px]">
-            {loading && (
+            {/* 5. استخدام isLoading بتاعة TanStack للهياكل الجاهزة (Skeleton) */}
+            {isLoading && (
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {[...Array(6)].map((_, i) => (
                   <div
@@ -140,12 +120,13 @@ function Doctors() {
               </div>
             )}
 
-            {!loading && (
+            {!isLoading && (
               <div className="animate-[fadeIn_0.3s_ease-out]">
-                {error && (
+                {/* 6. استخدام isError و error.message الحقيقية من السيرفر */}
+                {isError && (
                   <div className="mx-auto mb-8 max-w-xl rounded-2xl border border-red-100 bg-red-50/90 p-4 text-center">
                     <p className="text-sm font-medium text-red-600">
-                      {error}
+                      {error.message}
                     </p>
                   </div>
                 )}
