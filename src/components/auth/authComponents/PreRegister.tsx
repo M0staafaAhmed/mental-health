@@ -85,7 +85,7 @@ export default function PreRegister({ setPage }: { setPage: (page: string) => vo
             console.log(`With Highest Score: ${highestScore}`);
             console.log("All Scores:", answers);
 
-            alert(`Recommended Test: ${recommendedTest.toUpperCase()} (Score: ${highestScore}/5)`);
+            // alert(`Recommended Test: ${recommendedTest.toUpperCase()} (Score: ${highestScore}/5)`);
             
             // هنا تقدر تعمل Router.push('/test/' + recommendedTest) عشان توجّه اليوزر
         }
