@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 export interface UserInfoState {
     token: string;
@@ -37,6 +38,7 @@ export const userInfoSlice = createSlice({
             state.token = '';
             state.user = { id: 0, name: '' };
             localStorage.removeItem('userInfo');
+            toast.success("Logged out successfully!");
         },
         test: (state) => {
             console.log("Current User Info:", state);
