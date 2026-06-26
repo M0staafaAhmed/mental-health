@@ -8,13 +8,17 @@ import { ToastContainer } from "react-toastify";
 import Doctors from "./components/Doctors/Doctors";
 import About from "./components/About/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from 'react-redux'
 import Login from "./components/auth/Login/Login";
 import Tests from "./components/Tests/Tests";
 import NotFound from "./components/NotFound/NotFound";
+import { store } from "./redux/store";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedAuth from "./ProtectedAuth/ProtectedAuth";
 
 function App() {
   const router = createBrowserRouter([
-    {path: "*", element: <NotFound />},
+    { path: "*", element: <NotFound /> },
     {
       path: "",
       element: <HomeNavbar />,
@@ -25,12 +29,12 @@ function App() {
         { path: "about", element: <About /> },
       ],
     },
-    { path: "/register", element: <Register /> },
-    { path: "/login", element: <Login /> },
+    { path: "/register", element: <ProtectedAuth><Register /></ProtectedAuth> },
+    { path: "/login", element: <ProtectedAuth><Login /></ProtectedAuth> },
     { path: "/mood", element: <h1>Mood</h1> },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
       children: [
         { index: true, element: <h1>Dashboard home</h1> },
         { path: "tests", element: <h1>tests</h1> },
@@ -43,14 +47,19 @@ function App() {
     },
   ]);
 
+
+  
+
   const queryClient = new QueryClient();
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ToastContainer />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </QueryClientProvider>
+      </Provider >
     </>
   );
 }

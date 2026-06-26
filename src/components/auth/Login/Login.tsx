@@ -5,9 +5,11 @@ import { useForm } from 'react-hook-form';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FaSpa } from 'react-icons/fa';
 import { MdOutlineMail, MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as z from 'zod';
+import { setUserInfo } from '../../../redux/slices/userInfoSlice';
 
 const loginSchema = z.object({
     Email: z.string().email("Please enter a valid email address"),
@@ -17,6 +19,8 @@ const loginSchema = z.object({
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
@@ -37,6 +41,11 @@ export default function Login() {
             console.log(res)
             toast.success(res.message || "Login successful!")
             console.log(res);
+            dispatch(setUserInfo({
+                token: res.token,
+                user: res.user
+            }))
+            navigate("/dashboard");
         } catch (error: any) {
             console.error("Error logging in user:", error);
             toast.error(error.response?.data?.message || "Login failed. Please try again.");
