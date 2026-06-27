@@ -184,7 +184,7 @@ function Tests() {
 
                   <button
                     onClick={() => handleStartTest(test.TestTypeID)}
-                    className={`w-full py-3 text-sm font-bold text-white rounded-xl shadow-sm transition-all duration-200 active:scale-[0.98] ${btn}`}
+                    className={`w-full py-3 text-sm font-bold text-white rounded-xl shadow-sm transition-all duration-200 active:scale-[0.98] cursor-pointer ${btn}`}
                   >
                     Start Assessment
                   </button>
@@ -193,7 +193,7 @@ function Tests() {
             })}
 
           {!isLoading && (
-            <div className="rounded-2xl p-6 flex flex-col text-white bg-gradient-to-br from-blue-600 to-teal-600 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <div className="rounded-2xl p-6 flex flex-col text-white bg-linear-to-br from-blue-600 to-teal-600 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <h3 className="text-xl font-bold mb-2">Need Help Now?</h3>
               <p className="text-sm text-white/90 leading-relaxed mb-6 flex-1">
                 Assessments are for screening purposes. If you're in crisis,
