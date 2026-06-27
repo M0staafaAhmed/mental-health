@@ -9,14 +9,7 @@ import {
   HelpCircle,
   CheckCircle2,
 } from "lucide-react";
-
-interface TestType {
-  TestTypeID: number;
-  TestName: string;
-  Description: string;
-  NormalRange: string;
-  TotalQuestions: number;
-}
+import type { TestType } from "../../Types/Types";
 
 const API_URL = "https://mental-heath-backend.vercel.app/tests";
 
