@@ -16,6 +16,8 @@ import { store } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ProtectedAuth from "./ProtectedAuth/ProtectedAuth";
 
+// edit-register
+
 function App() {
   const router = createBrowserRouter([
     { path: "*", element: <NotFound /> },

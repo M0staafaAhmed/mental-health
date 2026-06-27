@@ -102,16 +102,16 @@ function Doctors() {
             </div>
           </div>
 
-          <div className="mt-12 min-h-[420px]">
+          <div className="mt-12 min-h-105">
             {/* 5. استخدام isLoading بتاعة TanStack للهياكل الجاهزة (Skeleton) */}
             {isLoading && (
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-soft backdrop-blur"
+                    className="rounded-4xl border border-white/70 bg-white/70 p-5 shadow-soft backdrop-blur"
                   >
-                    <div className="h-48 rounded-[1.5rem] bg-slate-200/70 animate-pulse" />
+                    <div className="h-48 rounded-3xl bg-slate-200/70 animate-pulse" />
                     <div className="mt-5 h-5 w-2/3 rounded-full bg-slate-200 animate-pulse" />
                     <div className="mt-3 h-4 w-1/2 rounded-full bg-slate-100 animate-pulse" />
                     <div className="mt-6 h-11 rounded-2xl bg-slate-200/70 animate-pulse" />
@@ -153,7 +153,7 @@ function Doctors() {
                       return (
                         <article
                           key={doc.DoctorID}
-                          className="relative rounded-[2rem] border border-white/80 bg-white/85 p-6 text-center shadow-soft backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-hover"
+                          className="relative rounded-4xl border border-white/80 bg-white/85 p-6 text-center shadow-soft backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-hover"
                         >
                           <div className="absolute left-5 top-5 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
                             Available
@@ -185,7 +185,7 @@ function Doctors() {
                               onClick={() =>
                                 setOpenId(isContactOpen ? null : doc.DoctorID)
                               }
-                              className={`mt-6 h-12 w-full rounded-2xl text-sm font-semibold transition-all duration-200 ${
+                              className={`mt-6 h-12 w-full rounded-2xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
                                 isContactOpen
                                   ? "bg-gray-900 text-white hover:bg-gray-800"
                                   : "bg-primary text-white shadow-lg shadow-primary/20 hover:bg-blue-700"
@@ -234,7 +234,7 @@ function Doctors() {
                     })}
                   </div>
                 ) : (
-                  <div className="mx-auto mt-10 max-w-md rounded-[2rem] border border-dashed border-outline-variant/70 bg-white/80 px-6 py-14 text-center shadow-soft">
+                  <div className="mx-auto mt-10 max-w-md rounded-4xl border border-dashed border-outline-variant/70 bg-white/80 px-6 py-14 text-center shadow-soft">
                     <p className="text-sm font-semibold text-gray-600">
                       {doctors.length > 0
                         ? "No doctors found matching your criteria."

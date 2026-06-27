@@ -52,8 +52,14 @@ export default function RegisterForm({ setPage , setEmail }: { setPage: (page: s
 
   async function handleRegister(data: z.infer<typeof registerSchema>) {
     setIsLoading(true)
+    const recomendedTest = JSON.parse(localStorage.getItem("recommendedTests") || "null");
+    console.log("Recommended Tests from localStorage:", recomendedTest);
+    const apiPayload = {
+      ...data,
+      onboarding: recomendedTest || null, // Add the recommended tests to the payload
+    }
     try {
-      const req = await axios.post(`https://mental-heath-backend.vercel.app/register`, data)
+      const req = await axios.post(`https://mental-heath-backend.vercel.app/register`, apiPayload)
       console.log(req)
       const res = await req.data
       console.log(res)
@@ -61,6 +67,7 @@ export default function RegisterForm({ setPage , setEmail }: { setPage: (page: s
       console.log(res);
       setEmail(data.Email);
       setPage("verification");
+      localStorage.removeItem("recommendedTests"); // Clear the recommended tests from localStorage after successful registration
     } catch (error : any) {
       console.error("Error registering user:", error);
       toast.error(error.response?.data?.message || "Registration failed. Please try again.");

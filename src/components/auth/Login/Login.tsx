@@ -43,7 +43,8 @@ export default function Login() {
             console.log(res);
             dispatch(setUserInfo({
                 token: res.token,
-                user: res.user
+                user: res.user,
+                stats: res.stats
             }))
             navigate("/dashboard");
         } catch (error: any) {
