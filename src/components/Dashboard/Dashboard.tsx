@@ -14,7 +14,6 @@ import type { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUserInfo } from '../../redux/slices/userInfoSlice';
 
-// dashboardlayout
 export default function Dashboard() {
   const userName = useSelector((state: RootState) => state.userInfo.user.name);
   const dispatch = useDispatch(); // استرجاع اسم المستخدم من الـ Redux store

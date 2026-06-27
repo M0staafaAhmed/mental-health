@@ -14,9 +14,10 @@ import Tests from "./components/Tests/Tests";
 import NotFound from "./components/NotFound/NotFound";
 import { store } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import ProtectedAuth from "./ProtectedAuth/ProtectedAuth";
+import ProtectedAuth from "./components/ProtectedAuth/ProtectedAuth";
+import Main from "./components/DashboardPages/Main/Main";
 
-// edit-register
+// dashboard-main
 
 function App() {
   const router = createBrowserRouter([
@@ -38,7 +39,7 @@ function App() {
       path: "/dashboard",
       element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
       children: [
-        { index: true, element: <h1>Dashboard home</h1> },
+        { index: true, element: <Main /> },
         { path: "tests", element: <h1>tests</h1> },
         { path: "chat", element: <h1>Chat</h1> },
         { path: "doctors", element: <h1>Doctors</h1> },

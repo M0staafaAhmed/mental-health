@@ -1,20 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-
-export interface UserInfoState {
-    token: string;
-    user: {
-        id: number;
-        name: string;
-    };
-    stats: {
-        totalTests: number | null;
-        lastScore: number | null;
-    }
-}
+import type { UserInfoType } from "../../Types/Types";
 
 
-const initialState = (): UserInfoState => {
+
+const initialState = (): UserInfoType => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
         return JSON.parse(userInfo);
