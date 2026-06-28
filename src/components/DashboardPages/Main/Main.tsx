@@ -55,7 +55,7 @@ export default function Main() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Mood Widget */}
-                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                <div className="bg-white rounded-xl p-4 border border-gray-200">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">How are you feeling today?</h3>
                     <div className="flex justify-between items-center gap-2">
                         {[
@@ -69,7 +69,7 @@ export default function Main() {
                                 key={label}
                                 className="group flex flex-col items-center gap-2 flex-1 p-2 rounded-xl hover:bg-gray-50 transition-all cursor-pointer"
                             >
-                                <span className="text-3xl grayscale group-hover:grayscale-0 transition-all scale-100 group-hover:scale-110">
+                                <span className="text-lg sm:text-3xl grayscale group-hover:grayscale-0 transition-all scale-100 group-hover:scale-110">
                                     {emoji}
                                 </span>
                                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{label}</span>
@@ -97,7 +97,10 @@ export default function Main() {
             {/* Self-Assessment Tests */}
             <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-semibold text-gray-900">Self-Assessment Tests</h3>
+                    <div className='w-3/4 lg:w-fit'>
+                        <h3 className="text-xl font-semibold text-gray-900">Self-Assessment Tests</h3>
+                        {tests.filter((test)=> test.isRecommended).length > 0 && <p className='text-sm font-medium'>The <span className='text-primary font-bold'>Recommended</span> tag added based on your answers during registration</p>}
+                    </div>
                     <Link to="tests" className="text-primary text-sm font-medium hover:underline">View All</Link>
                 </div>
                 <div className="flex overflow-x-auto gap-6 pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none">
