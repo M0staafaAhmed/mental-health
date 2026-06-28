@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import Tools from '../Addons/Tools'
 
 export default function HomeNavbar() {
     return (
@@ -70,6 +71,7 @@ export default function HomeNavbar() {
                 </div>
             </header>
             <Outlet />
+            <Tools style='m-5 md:m-10'/>
         </>
     )
 }
