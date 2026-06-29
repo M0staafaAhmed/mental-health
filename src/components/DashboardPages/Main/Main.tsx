@@ -59,6 +59,9 @@ export default function Main() {
                         <p className="text-xs text-slate-400 mt-1 mb-6">Tracking your mood helps customize your care plan.</p>
                     </div>
                     <div className="flex justify-between items-center gap-1 sm:gap-2">
+                <div className="bg-white rounded-xl p-4 border border-gray-200">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">How are you feeling today?</h3>
+                    <div className="flex justify-between items-center gap-2">
                         {[
                             { emoji: "😢", label: "Sad" },
                             { emoji: "😕", label: "Neutral" },
@@ -71,6 +74,7 @@ export default function Main() {
                                 className="group flex flex-col items-center gap-2 flex-1 py-3 px-1 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all cursor-pointer active:scale-95"
                             >
                                 <span className="text-3xl grayscale group-hover:grayscale-0 transition-all duration-300 transform scale-100 group-hover:scale-115 group-hover:-translate-y-0.5 filter drop-shadow-sm">
+                                <span className="text-lg sm:text-3xl grayscale group-hover:grayscale-0 transition-all scale-100 group-hover:scale-110">
                                     {emoji}
                                 </span>
                                 <span className="text-[10px] font-bold text-slate-400 group-hover:text-primary uppercase tracking-wider transition-colors duration-200">
@@ -124,6 +128,12 @@ export default function Main() {
                     <Link to="tests" className="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-xl transition-all duration-200 shadow-sm">
                         View All
                     </Link>
+                <div className="flex items-center justify-between">
+                    <div className='w-3/4 lg:w-fit'>
+                        <h3 className="text-xl font-semibold text-gray-900">Self-Assessment Tests</h3>
+                        {tests.filter((test)=> test.isRecommended).length > 0 && <p className='text-sm font-medium'>The <span className='text-primary font-bold'>Recommended</span> tag added based on your answers during registration</p>}
+                    </div>
+                    <Link to="tests" className="text-primary text-sm font-medium hover:underline">View All</Link>
                 </div>
                 
                 <div className="flex overflow-x-auto gap-6 pb-4 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none mask-gradient">

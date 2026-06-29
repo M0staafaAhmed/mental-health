@@ -23,11 +23,8 @@ export default function Home() {
                                 A small step today means a lot for a better tomorrow. Join a compassionate community designed to support your journey towards clarity and peace.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <Link to="/register" className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-full font-medium text-lg hover:scale-105 transition-transform shadow-lg active:scale-95">
+                                <Link to="/register" className="w-full sm:w-auto px-8 py-3 bg-primary text-white rounded-full font-medium text-lg hover:scale-105 transition-transform shadow-lg active:scale-95">
                                     Get Started
-                                </Link>
-                                <Link to="/login" className="w-full sm:w-auto px-6 py-3 border-2 border-primary text-primary rounded-full font-medium text-lg hover:bg-primary/5 transition-all active:scale-95">
-                                    Sign In
                                 </Link>
                             </div>
                             {/* Floating Illustration/Abstract Element */}
@@ -104,7 +101,7 @@ export default function Home() {
                             <p className="text-lg font-normal leading-7 text-white/90 mb-10 max-w-xl relative z-10">
                                 Join over 50,000 members who have found their peace and balance through our personalized wellness programs.
                             </p>
-                            <Link to="/signup" className="relative z-10 px-8 py-4 bg-white text-primary rounded-full text-sm font-medium leading-5 hover:bg-surface transition-all shadow-xl hover:shadow-2xl active:scale-95">
+                            <Link to="/register" className="relative z-10 px-8 py-4 bg-white text-primary rounded-full text-sm font-medium leading-5 hover:bg-surface transition-all shadow-xl hover:shadow-2xl active:scale-95">
                                 Create Free Account
                             </Link>
                             <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60">

@@ -13,6 +13,7 @@ import {
 import type { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUserInfo } from '../../redux/slices/userInfoSlice';
+import Tools from '../Addons/Tools';
 
 export default function Dashboard() {
   const userName = useSelector((state: RootState) => state.userInfo.user.name);
@@ -146,6 +147,7 @@ export default function Dashboard() {
         </nav>
 
       </div>
+      <Tools style='mr-5 mb-25 md:m-10'/>
     </>
   )
 }
