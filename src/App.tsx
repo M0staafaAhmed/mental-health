@@ -16,8 +16,11 @@ import { store } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ProtectedAuth from "./components/ProtectedAuth/ProtectedAuth";
 import Main from "./components/DashboardPages/Main/Main";
+import TestsPage from "./components/DashboardPages/TestsPage/TestsPage";
+import SingleTestPage from "./components/DashboardPages/TestsComponents/SingleTestPage";
+import TestResultsPage from "./components/DashboardPages/TestsComponents/TestResultsPage";
+import ResultsOverviewPage from "./components/DashboardPages/TestsComponents/ResultsOverviewPage";
 
-// dashboard-main
 
 function App() {
   const router = createBrowserRouter([
@@ -40,18 +43,17 @@ function App() {
       element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
       children: [
         { index: true, element: <Main /> },
-        { path: "tests", element: <h1>tests</h1> },
+        { path: "tests", element: <TestsPage /> },
+        { path: "tests/:id", element: <SingleTestPage /> }, 
         { path: "chat", element: <h1>Chat</h1> },
         { path: "doctors", element: <h1>Doctors</h1> },
-        { path: "results", element: <h1>Results</h1> },
+        { path: "tests/:id/result", element: <TestResultsPage /> },
+        { path: "results", element: <ResultsOverviewPage /> },
         { path: "profile", element: <h1>Profile</h1> },
         { path: "settings", element: <h1>Settings</h1> },
       ],
     },
   ]);
-
-
-  
 
   const queryClient = new QueryClient();
 
