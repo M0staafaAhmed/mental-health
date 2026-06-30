@@ -155,38 +155,44 @@ export default function Main() {
                 </div>
             </section>
 
-            {/* Available Doctors Section */}
-            <section className="space-y-4">
-                <div className="flex items-center justify-between px-1">
-                    <div className="space-y-0.5">
-                        <h3 className="text-xl font-bold text-slate-800 tracking-tight">Available Doctors</h3>
-                        <p className="text-xs text-slate-400 hidden sm:block">Connect with verified and friendly professionals.</p>
-                    </div>
-                    <Link to="doctors" className="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-xl transition-all duration-200 shadow-sm">
-                        View All
-                    </Link>
-                </div>
+<section className="space-y-4 overflow-hidden">
+    <div className="flex items-center justify-between px-1">
+        <div className="space-y-0.5">
+            <h3 className="text-xl font-bold text-slate-800 tracking-tight">Available Doctors</h3>
+            <p className="text-xs text-slate-400 hidden sm:block">Connect with verified and friendly professionals.</p>
+        </div>
+        <Link to="doctors" className="inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white rounded-xl transition-all duration-200 shadow-sm">
+            View All
+        </Link>
+    </div>
 
-                <div className="flex overflow-x-auto gap-6 pb-4 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none">
-                    {doctorsLoading && Array.from({ length: 3 }).map((_, i) => (
-                        <div key={i} className="snap-start shrink-0">
-                            <DoctorCardSkeleton />
-                        </div>
-                    ))}
+    {/* الحاوية هنا flex دائم في كل الشاشات مع تفعيل السكرول الأفقي بشكل سلس */}
+    <div className="flex overflow-x-auto gap-6 pb-5 pt-2 px-1 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none">
+        
+        {doctorsLoading && Array.from({ length: 5 }).map((_, i) => (
+            // تثبيت العرض للسكيلتون في كل الشاشات لمنع الالتصاق
+            <div key={i} className="snap-start shrink-0 w-72.5 sm:w-77.5 md:w-[320px]">
+                <DoctorCardSkeleton />
+            </div>
+        ))}
 
-                    {doctorsError && (
-                        <div className="w-full p-6 bg-red-50/60 border border-red-100 text-red-600 rounded-2xl text-center text-sm font-medium backdrop-blur-sm">
-                            ⚠️ Unable to load therapists. Please try again later.
-                        </div>
-                    )}
-                    
-                    {!doctorsLoading && !doctorsError && doctors.slice(0, 5).map((doctor) => (
-                        <div key={doctor.FullName} className="snap-start shrink-0 transition-transform duration-300 hover:-translate-y-1">
-                            <DoctorCard doctor={doctor} />
-                        </div>
-                    ))}
-                </div>
-            </section>
+        {doctorsError && (
+            <div className="w-full p-6 bg-red-50/60 border border-red-100 text-red-600 rounded-2xl text-center text-sm font-medium backdrop-blur-sm">
+                ⚠️ Unable to load therapists. Please try again later.
+            </div>
+        )}
+        
+        {!doctorsLoading && !doctorsError && doctors.slice(0, 5).map((doctor) => (
+            // تثبيت العرض للكروت الحقيقية: w للموبايل و md:w للشاشات الكبيرة عشان تحافظ على قوامها أثناء السكرول
+            <div 
+                key={doctor.DoctorID || doctor.FullName} 
+                className="snap-start shrink-0 w-72.5 sm:w-77.5 md:w-[320px] transition-all duration-300"
+            >
+                <DoctorCard doctor={doctor} />
+            </div>
+        ))}
+    </div>
+</section>
 
         </main>
     );
