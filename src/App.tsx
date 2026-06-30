@@ -20,6 +20,7 @@ import TestsPage from "./components/DashboardPages/TestsPage/TestsPage";
 import SingleTestPage from "./components/DashboardPages/TestsComponents/SingleTestPage";
 import TestResultsPage from "./components/DashboardPages/TestsComponents/TestResultsPage";
 import ResultsOverviewPage from "./components/DashboardPages/TestsComponents/ResultsOverviewPage";
+import DoctorsPage from "./components/DashboardPages/DoctorsPage/DoctorsPage";
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
         { path: "tests", element: <TestsPage /> },
         { path: "tests/:id", element: <SingleTestPage /> }, 
         { path: "chat", element: <h1>Chat</h1> },
-        { path: "doctors", element: <h1>Doctors</h1> },
+        { path: "doctors", element: <DoctorsPage /> },
         { path: "tests/:id/result", element: <TestResultsPage /> },
         { path: "results", element: <ResultsOverviewPage /> },
         { path: "profile", element: <h1>Profile</h1> },

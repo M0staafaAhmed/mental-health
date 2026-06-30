@@ -1,61 +1,103 @@
 import { MdVerified } from "react-icons/md";
+import { AiFillStar } from "react-icons/ai"; // إضافة أيقونة النجمة للتقييم
 import type { DoctorType } from "../../../Types/Types";
 
 export default function DoctorCard({ doctor }: { doctor: DoctorType }) {
-    // دالة لجلب الحروف الأولى بشكل أشيك لو مفيش صورة
-    const getInitials = (name: string) => {
-        const parts = name.trim().split(/\s+/);
-        const first = parts[0]?.[0] ?? "";
-        const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
-        return (first + last).toUpperCase() || "DR";
-    };
+  // دالة لاستخراج أول حرفين من الاسم بشكل أنيق ومميز في حالة عدم وجود صورة
+  const getInitials = (name: string) => {
+    const parts = name.trim().split(/\s+/);
+    const first = parts[0]?.[0] ?? "";
+    const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+    return (first + last).toUpperCase() || "DR";
+  };
+  // معادلة مخصصة لحساب تقييم مختلف لكل دكتور (بين 4.5 و 5.0) بناءً على الـ ID
+  const rating = (4.5 + ((doctor.DoctorID * 7) % 6) * 0.1).toFixed(1);
 
-    return (
-        <div className="min-w-70 sm:min-w-72.5 bg-white/90 rounded-4xl overflow-hidden border border-slate-100 flex flex-col group shadow-soft hover:shadow-soft-hover transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
-            
-            {/* Image Container */}
-            <div className="relative h-44 overflow-hidden bg-linear-to-br from-slate-50 to-teal-50/40 flex items-center justify-center p-4">
-                {/* Available Badge */}
-                <span className="absolute top-4 left-4 z-10 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600 border border-emerald-100/50 shadow-sm">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Available
-                </span>
+  // معادلة لحساب عدد مراجعات متغير (بين 40 و 280 مثلاً) بناءً على الـ ID
+  const reviewsCount = 40 + ((doctor.DoctorID * 13) % 241);
 
-                {doctor.ImageUrl ? (
-                    <img
-                        src={doctor.ImageUrl}
-                        alt={`Dr. ${doctor.FullName}`}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                    />
-                ) : (
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-black shadow-inner ring-4 ring-primary/5 select-none transition-transform duration-500 group-hover:scale-105">
-                        {getInitials(doctor.FullName)}
-                    </div>
-                )}
-                
-                {/* Bottom Overlay Smooth Shadow */}
-                <div className="absolute inset-0 bg-linear-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  // توليد ألوان خلفية عشوائية أو ثابتة هادئة للحروف الأولى لتطابق التصميم (مثل MA و LK)
+  const getInitialsBg = (name: string) => {
+    const charCode = name.charCodeAt(0) + (name.charCodeAt(1) || 0);
+    const colors = [
+      "bg-purple-600 text-white",
+      "bg-blue-500 text-white",
+      "bg-teal-500 text-white",
+      "bg-indigo-500 text-white",
+    ];
+    return colors[charCode % colors.length];
+  };
+
+  return (
+    <div className="w-full bg-white rounded-3xl border border-slate-100 flex flex-col group shadow-[0_4px_25px_-5px_rgba(148,163,184,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(148,163,184,0.12)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+      {/* Upper Section: Avatar and Status */}
+      <div className="relative pt-8 pb-4 flex flex-col items-center justify-center bg-white">
+        {/* Avatar Wrapper */}
+        <div className="relative w-24 h-24 select-none">
+          {doctor.ImageUrl ? (
+            <div className="w-full h-full rounded-full overflow-hidden ring-4 ring-slate-50 shadow-inner">
+              <img
+                src={doctor.ImageUrl}
+                alt={`Dr. ${doctor.FullName}`}
+                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              />
             </div>
-
-            {/* Info Body */}
-            <div className="p-5 flex flex-col gap-4 flex-1 justify-between bg-white/50">
-                <div className="space-y-1 text-center">
-                    <div className="flex items-center justify-center gap-1.5">
-                        <h4 className="text-base font-bold text-slate-800 tracking-tight group-hover:text-primary transition-colors duration-200">
-                            Dr. {doctor.FullName}
-                        </h4>
-                        <MdVerified className="text-primary text-sm shrink-0 filter drop-shadow-sm" title="Verified Expert" />
-                    </div>
-                    <p className="text-xs font-medium text-slate-400">
-                        {doctor.Specialty}
-                    </p>
-                </div>
-
-                {/* Booking Button */}
-                <button className="w-full py-3 bg-primary text-white rounded-xl text-xs font-bold shadow-md shadow-primary/10 hover:bg-blue-700 hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-98 cursor-pointer transform">
-                    View Profile
-                </button>
+          ) : (
+            // الدائرة الملونة الموضحة في السكتش الأصلي عند غياب الصورة
+            <div
+              className={`w-full h-full rounded-full flex items-center justify-center text-lg font-black tracking-wider shadow-md ${getInitialsBg(doctor.FullName)}`}
+            >
+              {getInitials(doctor.FullName)}
             </div>
+          )}
+
+          {/* Online Dot: النقطة الخضراء المتداخلة أسفل الدائرة */}
+          <span className="absolute bottom-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white ring-2 ring-white">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+            <span className="absolute h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping opacity-75" />
+          </span>
         </div>
-    );
+      </div>
+
+      {/* Info Body Section */}
+      <div className="px-5 pb-6 pt-2 flex flex-col gap-4 flex-1 justify-between text-center bg-white">
+        <div className="space-y-1">
+          {/* Name & Verified Badge */}
+          <div className="flex items-center justify-center gap-1">
+            <h4 className="text-base font-black text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors duration-200">
+              Dr. {doctor.FullName}
+            </h4>
+            <MdVerified
+              className="text-blue-500 text-base shrink-0"
+              title="Verified Expert"
+            />
+          </div>
+
+          {/* Specialty */}
+          <p className="text-[11px] font-bold text-blue-600/90 tracking-wide uppercase">
+            {doctor.Specialty}
+          </p>
+
+          {/* Fake Dynamic Rating: إضافة النجوم والتقييمات كالمظهر الأصلي */}
+          {/* Rating Group */}
+          <div className="flex items-center justify-center gap-1.5 pt-1">
+            <div className="flex items-center gap-0.5 bg-amber-50/80 border border-amber-100/50 rounded-md px-2 py-0.5 text-xs font-black text-amber-600">
+              <AiFillStar className="text-amber-500 text-xs -mt-1px" />
+              {/* هنا بنعرض التقييم المتغير */}
+              <span>{rating}</span>
+            </div>
+            {/* هنا بنعرض عدد المراجعات المتغير */}
+            <span className="text-[11px] font-bold text-slate-400">
+              ({reviewsCount} reviews)
+            </span>
+          </div>
+        </div>
+
+        {/* Styled View Profile Button: تحويله إلى Outline شفاف بحدود زرقاء أنيقة */}
+        <button className="w-full py-2.5 bg-white border border-blue-600 hover:bg-blue-600 text-blue-600 hover:text-white font-bold text-xs rounded-xl shadow-xs transition-all duration-200 active:scale-[0.98] cursor-pointer">
+          View Profile
+        </button>
+      </div>
+    </div>
+  );
 }
