@@ -21,12 +21,12 @@ export default function Tools({style , auth = false} : {style : string , auth? :
     }
     return (
         <>
-            <div className={`${style} fixed right-0 bottom-0 z-50`} onClick={toggleOpen}>
-                <div className="rounded-full w-12 h-12 shadow-xl bg-white/50 backdrop-blur-3xl flex justify-center items-center transition-all active:scale-90 cursor-pointer" title="tools">
+            <div className={`${style} fixed right-0 bottom-0 z-50`}>
+                <div className={`rounded-full w-12 h-12 shadow-xl bg-white/50 backdrop-blur-3xl flex justify-center items-center transition-all active:scale-90 cursor-pointer`} onClick={toggleOpen} title="tools">
                     <FaPlus className={`text-2xl transition-all duration-500 ${open ? "rotate-45" : ""}`} />
                 </div>
 
-                <ul className="absolute right-0 bottom-14 flex flex-col-reverse gap-2">
+                <ul className={`absolute right-0 bottom-14 flex flex-col-reverse gap-2 ${open ? "" : "pointer-events-none"}`}>
                     {auth && <li className={`hover:bg-gray-200 rounded-2xl bg-white/30 backdrop-blur-md border border-white/60 shadow-2xl whitespace-nowrap transition-all duration-300 delay-150 ${open
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-4 pointer-events-none"

@@ -21,6 +21,12 @@ import SingleTestPage from "./components/DashboardPages/TestsComponents/SingleTe
 import TestResultsPage from "./components/DashboardPages/TestsComponents/TestResultsPage";
 import ResultsOverviewPage from "./components/DashboardPages/TestsComponents/ResultsOverviewPage";
 import DoctorsPage from "./components/DashboardPages/DoctorsPage/DoctorsPage";
+import ProfilePage from "./components/DashboardPages/ProfilePage/ProfilePage";
+import PrivacyPolicyPage from "./components/Privacy/Privacy.tsx";
+import TermsPage from "./components/Terms/Terms.tsx";
+import HelpPage from "./components/Help/Help.tsx";
+import ChatPage from "./components/DashboardPages/ChatPage/ChatPage.tsx";
+
 
 
 function App() {
@@ -34,6 +40,9 @@ function App() {
         { path: "tests", element: <Tests /> },
         { path: "doctors", element: <Doctors /> },
         { path: "about", element: <About /> },
+        { path: "privacy", element: <PrivacyPolicyPage   /> },
+        { path: "terms", element: <TermsPage /> },
+        { path: "/help", element: <HelpPage /> },
       ],
     },
     { path: "/register", element: <ProtectedAuth><Register /></ProtectedAuth> },
@@ -46,11 +55,13 @@ function App() {
         { index: true, element: <Main /> },
         { path: "tests", element: <TestsPage /> },
         { path: "tests/:id", element: <SingleTestPage /> }, 
-        { path: "chat", element: <h1>Chat</h1> },
+        { path: "chat", element: <ChatPage /> },
         { path: "doctors", element: <DoctorsPage /> },
         { path: "tests/:id/result", element: <TestResultsPage /> },
         { path: "results", element: <ResultsOverviewPage /> },
-        { path: "profile", element: <h1>Profile</h1> },
+        { path: "profile", element: <ProfilePage /> },
+
+
         { path: "settings", element: <h1>Settings</h1> },
       ],
     },

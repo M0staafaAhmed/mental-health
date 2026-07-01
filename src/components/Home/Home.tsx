@@ -122,24 +122,7 @@ export default function Home() {
                     </div>
                 </section>
             </main>
-            {/* Footer (Shared Component) */}
-            <footer className="bg-[#ededf9] border-t border-outline-variant w-full py-8">
-                <div className="container px-3 md:px-0 mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex flex-col items-center md:items-start gap-2">
-                        <span className="font-semibold text-gray-900">Safe Space</span>
-                        <p className="text-gray-700">Promoting mental well-being for everyone.</p>
-                    </div>
-                    <nav className="flex gap-8">
-                        <Link className="text-sm font-semibold leading-4 text-gray-700 hover:text-primary transition-colors" to="#">About</Link>
-                        <Link className="text-sm font-semibold leading-4 text-gray-700 hover:text-primary transition-colors" to="#">Privacy</Link>
-                        <Link className="text-sm font-semibold leading-4 text-gray-700 hover:text-primary transition-colors" to="#">Terms</Link>
-                        <Link className="text-sm font-semibold leading-4 text-gray-700 hover:text-primary transition-colors" to="#">Help</Link>
-                    </nav>
-                    <div className="text-gray-700 text-xs font-semibold leading-4">
-                        © 2026 Safe Space. All rights reserved.
-                    </div>
-                </div>
-            </footer>
+            
         </div>
 
     )

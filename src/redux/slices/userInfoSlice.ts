@@ -12,6 +12,10 @@ const initialState = (): UserInfoType => {
       user: {
         id: 0,
         name: "",
+        email: "",
+        phone: "",
+        gender: "",
+        dateOfBirth: ""
       },
       stats: {
         totalTests: 0,
@@ -33,7 +37,7 @@ export const userInfoSlice = createSlice({
     },
     clearUserInfo: (state) => {
       state.token = "";
-      state.user = { id: 0, name: "" };
+      state.user = { id: 0, name: "", email: "", phone: "", gender: "", dateOfBirth: "" };
       state.stats = { totalTests: 0, lastScore: null };
       localStorage.removeItem("userInfo");
       toast.success("Logged out successfully!");
