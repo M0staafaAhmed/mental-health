@@ -7,7 +7,7 @@ import {
   MdMedicalServices,
   MdAssignment,
   MdPerson,
-  MdSettings,
+  
   MdLogout,
 } from 'react-icons/md';
 import type { RootState } from '../../redux/store';
@@ -44,14 +44,6 @@ export default function Dashboard() {
               <MdPerson size={22} className="group-hover:text-primary transition-colors" />
               <span className="text-sm font-medium">Profile</span>
             </NavLink>
-            <NavLink
-              to="settings"
-              className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 active:scale-95 group ${isActive ? 'bg-primary/10 text-primary font-bold border-l-4 border-primary' : 'text-on-surface-variant hover:bg-slate-50'}`}
-            // className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 active:scale-95 group ${activeTab === 'settings' ? 'bg-primary/10 text-primary font-bold border-l-4 border-primary' : 'text-on-surface-variant hover:bg-slate-50'}`}
-            >
-              <MdSettings size={22} className="group-hover:text-primary transition-colors" />
-              <span className="text-sm font-medium">Settings</span>
-            </NavLink>
           </div>
         </aside>
 
@@ -68,13 +60,13 @@ export default function Dashboard() {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden border border-outline-variant">
+              <Link to="profile" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden border border-outline-variant">
                 <img
                   alt="User Profile"
                   className="w-full h-full object-cover"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWddl1TLgQK2OsbQTKb3WdkFg_Ya0S1wXhkfLOCvlGmPjnxcijMr93DcQOR6zl3_HcJmV_eIN9IAt-k-ABY3LHNbc_ddLdf_fWbSbZaxCdRThvuneNv1JpqBwlFIKF9AcWJOIe27DF6kELm2ysnK5pzkO2GWZXvZZzXu4584vUSs1UUwP6P3_0eh4Ok-z1lw_wZSJH5gySSNgJdly2GOjcJn5h0v7b5A2PJbLLT9T3WQIxw26GKxRk3E9ye44eqPLrNNp1KB58v4l2"
                 />
-              </div>
+              </Link>
               <button className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="logout" onClick={() => dispatch(clearUserInfo())}>
                 <MdLogout size={24} />
               </button>
@@ -100,6 +92,9 @@ export default function Dashboard() {
                 </Link>
                 <Link className="hover:text-primary transition-colors font-semibold text-sm" to="/terms">
                   Terms
+                </Link>
+                <Link className="hover:text-primary transition-colors font-semibold text-sm" to="/help">
+                  Help
                 </Link>
               </div>
             </div>

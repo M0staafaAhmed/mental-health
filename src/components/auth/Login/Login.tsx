@@ -163,6 +163,7 @@ export default function Login() {
                             <Link className="text-xs text-gray-400 hover:text-blue-600 transition-colors" to="/about">About</Link>
                             <Link className="text-xs text-gray-400 hover:text-blue-600 transition-colors" to="/privacy">Privacy</Link>
                             <Link className="text-xs text-gray-400 hover:text-blue-600 transition-colors" to="/terms">Terms</Link>
+                            <Link className="text-xs text-gray-400 hover:text-blue-600 transition-colors" to="/help">Help</Link>
                         </div>
                     </div>
                 </footer>

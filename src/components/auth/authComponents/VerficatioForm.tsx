@@ -1,16 +1,21 @@
-import axios from 'axios';
-import React, { useRef, useState } from 'react'
-import { MdOutlineMarkEmailRead } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export default function VerficatioForm({ setPage, email }: { setPage: (page: string) => void; email: string }) {
+export default function VerficatioForm({
+    setPage,
+    email,
+}: {
+    setPage: (page: string) => void;
+    email: string;
+}) {
     // 6 خانات للـ OTP
     const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
     const inputRefs = useRef<HTMLInputElement[]>([]);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-
 
     // دالة التعامل مع الكتابة داخل المربعات والتنقل التلقائي
     const handleChange = (element: HTMLInputElement, index: number) => {
@@ -28,7 +33,10 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
     };
 
     // دعم زرار الـ Backspace للرجوع للمربع السابق عند المسح
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>,
+        index: number,
+    ) => {
         if (e.key === "Backspace") {
             const newOtp = [...otp];
             newOtp[index] = "";
@@ -45,33 +53,43 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
         console.log("Submitting OTP Code:", fullCode);
         const data = {
             Email: email,
-            code: fullCode
+            code: fullCode,
         };
-        setIsLoading(true)
+        setIsLoading(true);
         try {
-            const req = await axios.post(`https://mental-heath-backend.vercel.app/verify`, data)
-            const res = await req.data
-            toast.success(res.message || "email verified successfully! Please login to your account.")
+            const req = await axios.post(
+                `https://mental-heath-backend.vercel.app/verify`,
+                data,
+            );
+            const res = await req.data;
+            toast.success(
+                res.message ||
+                "email verified successfully! Please login to your account.",
+            );
             console.log(res);
             setPage("pre-register");
             navigate("/login");
         } catch (error: any) {
             console.error("Error registering user:", error);
-            toast.error(error.response?.data?.message || "Verification failed. Please try again.");
+            toast.error(
+                error.response?.data?.message ||
+                "Verification failed. Please try again.",
+            );
             console.log(error.response?.data || error.message);
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
         // هنا هتحط الـ API Request لتأكيد الكود
     };
 
     return (
         <div className="bg-[#f8faff] min-h-screen flex flex-col justify-between font-sans relative overflow-hidden">
-
             {/* Top Navigation */}
             <header className="flex justify-between items-center h-16 px-6 md:px-12 w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-blue-600 tracking-tight">Safe Space</span>
+                    <span className="text-xl font-bold text-blue-600 tracking-tight">
+                        Safe Space
+                    </span>
                 </div>
             </header>
 
@@ -79,14 +97,15 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
             <main className="grow flex items-center justify-center px-4 relative z-30 my-8">
                 {/* Centered Card Container (Glassmorphism Effect) */}
                 <div className="w-full max-w-md bg-white/70 backdrop-blur-xl rounded-3xl p-8 md:p-10 flex flex-col items-center text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.04)] border border-white/60">
-
                     {/* Icon/Visual Header */}
                     <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 shadow-sm text-3xl">
                         <MdOutlineMarkEmailRead />
                     </div>
 
                     {/* Title & Subtext */}
-                    <h1 className="text-2xl font-bold text-gray-950 mb-2 tracking-tight">Check your email</h1>
+                    <h1 className="text-2xl font-bold text-gray-950 mb-2 tracking-tight">
+                        Check your email
+                    </h1>
                     <p className="text-sm text-gray-500 max-w-70 leading-relaxed">
                         We sent a 6-digit verification code to your email
                     </p>
@@ -100,7 +119,9 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
                                     type="text"
                                     maxLength={1}
                                     value={data}
-                                    ref={(el) => { if (el) inputRefs.current[index] = el; }}
+                                    ref={(el) => {
+                                        if (el) inputRefs.current[index] = el;
+                                    }}
                                     onChange={(e) => handleChange(e.target, index)}
                                     onKeyDown={(e) => handleKeyDown(e, index)}
                                     autoFocus={index === 0}
@@ -112,7 +133,7 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
                         {/* Action Button */}
                         <button
                             onClick={handleVerify}
-                            disabled={otp.some(slot => slot === "") || isLoading}
+                            disabled={otp.some((slot) => slot === "") || isLoading}
                             className="w-full bg-blue-600 text-white py-4 rounded-full font-semibold text-sm shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none"
                         >
                             {isLoading ? "Verifying..." : "Verify Account"}
@@ -130,10 +151,34 @@ export default function VerficatioForm({ setPage, email }: { setPage: (page: str
             {/* Global Footer */}
             <footer className="w-full py-6 bg-white/40 border-t border-gray-100 relative z-30">
                 <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <span className="text-xs text-gray-400">© 2026 Safe Space. All rights reserved.</span>
+                    <span className="text-xs text-gray-400">
+                        © 2026 Safe Space. All rights reserved.
+                    </span>
                     <div className="flex gap-6">
-                        <a className="text-xs text-gray-400 hover:text-blue-600 transition-colors" href="#">Privacy Policy</a>
-                        <a className="text-xs text-gray-400 hover:text-blue-600 transition-colors" href="#">Support</a>
+                        <Link
+                            className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors"
+                            to="/about"
+                        >
+                            About
+                        </Link>
+                        <Link
+                            className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors"
+                            to="/privacy"
+                        >
+                            Privacy
+                        </Link>
+                        <Link
+                            className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors"
+                            to="/terms"
+                        >
+                            Terms
+                        </Link>
+                        <Link
+                            className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors"
+                            to="/help"
+                        >
+                            Help
+                        </Link>
                     </div>
                 </div>
             </footer>

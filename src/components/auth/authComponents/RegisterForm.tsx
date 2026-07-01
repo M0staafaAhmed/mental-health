@@ -207,9 +207,18 @@ export default function RegisterForm({ setPage , setEmail }: { setPage: (page: s
           <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-xs font-semibold leading-4 text-[#434655]">© 2024 Safe Space. All rights reserved.</p>
             <nav className="flex gap-6">
-              <a className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" href="#">About</a>
-              <a className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" href="#">Privacy</a>
-              <a className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" href="#">Terms</a>
+              <Link className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" to="/about">
+                About
+              </Link>
+              <Link className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" to="/privacy">
+                Privacy
+              </Link>
+              <Link className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" to="/terms">
+                Terms
+              </Link>
+              <Link className="text-xs font-semibold leading-4 text-[#434655] hover:text-primary transition-colors" to="/help">
+                Help
+              </Link>
             </nav>
           </div>
         </footer>
