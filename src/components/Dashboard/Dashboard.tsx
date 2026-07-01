@@ -7,7 +7,7 @@ import {
   MdMedicalServices,
   MdAssignment,
   MdPerson,
-  MdSettings,
+  
   MdLogout,
 } from 'react-icons/md';
 import type { RootState } from '../../redux/store';

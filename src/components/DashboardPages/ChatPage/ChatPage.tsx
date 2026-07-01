@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { Send, Loader2, Bot, Plus, MessageCircle, ArrowLeft, PanelLeftOpen, PanelLeftClose } from 'lucide-react';
+import { Send, Loader2, Bot, Plus, MessageCircle,  PanelLeftOpen, PanelLeftClose } from 'lucide-react';
 import type { RootState } from '../../../redux/store';
 
 interface ChatMessage {
@@ -323,7 +323,7 @@ export default function ChatPage() {
                                 </div>
                             )}
                             <div className={`max-w-[80%] md:max-w-[65%] space-y-1 flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
-                                <div className={`px-4 py-3 rounded-2xl text-sm font-medium leading-relaxed break-words ${
+                                <div className={`px-4 py-3 rounded-2xl text-sm font-medium leading-relaxed wrap-break-words ${
                                     msg.role === 'user'
                                         ? 'bg-blue-600 text-white rounded-br-sm'
                                         : 'bg-white border border-slate-100 text-slate-700 shadow-sm rounded-bl-sm'
